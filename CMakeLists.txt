@@ -190,8 +190,7 @@ if(UNIX OR MINGW OR MSYS)
                     -Werror-implicit-function-declaration
                     $<$<CONFIG:Release>:-fomit-frame-pointer>
                     $<$<C_COMPILER_ID:Clang,AppleClang>:
-                    -Wno-missing-field-initializers>
-                    -flto)
+                    -Wno-missing-field-initializers>)
   if (BUILD_FUZZER)
     target_compile_options(unarr PUBLIC "${sanitize_opts}")
     target_compile_definitions(unarr PRIVATE -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION)
@@ -209,11 +208,6 @@ if(UNIX OR MINGW OR MSYS)
     else()
       set(linker_opts "-Wl,--as-needed -Wl,--no-undefined")
     endif()
-  endif()
-
-  # Clang linker needs -flto too when doing lto
-  if("${CMAKE_C_COMPILER_ID}" MATCHES "Clang")
-    set (linker_opts "${linker_opts} -flto")
   endif()
 
   set_target_properties(unarr PROPERTIES LINK_FLAGS "${linker_opts}")
