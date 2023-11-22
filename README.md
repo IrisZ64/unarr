@@ -38,9 +38,6 @@ development of unarr, which no longer is maintained.
 * xz / libLZMA
 * zlib
 
-More information on what library is used for which purpose can be found in the
-description for embedded builds.
-
 #### CMake
 
 ```bash
@@ -93,23 +90,6 @@ cmake .. -DBUILD_FUZZER=ON
 
 All tests can be run using ctest or their respective executables.
 
-#### Embedded build
-
-Make sure your compiler is C99 compatible, grab the source code, copy it into
-your project and adjust your build system accordingly.
-
-You can define the following symbols to take advantage of third party libraries:
-
-| Symbol            | Required header | Required for (format/method)|
-|-------------------|:---------------:|:----------------------------|
-|HAVE_ZLIB          |     zlib.h      |  faster CRC-32 and Deflate  |
-|HAVE_BZIP2         |     bzlib.h     |    ZIP / Bzip2              |
-|HAVE_LIBLZMA       |     lzma.h      |    ZIP / LZMA, XZ(LZMA2)    |
-|HAVE_7Z            |     7z.h        |    7Z / LZMA, LZMA2, BCJ    |
-|_7ZIP_PPMD_SUPPPORT|                 |    7Z / PPMd                |
-
-Make sure the required headers are present in the include path.
-
 ## Usage
 
 ### Examples
@@ -135,11 +115,14 @@ Unarr was written for comic book archives, so it currently doesn't support:
 
 ### 7z support
 
-7z support is currently limited and has to be explicitly enabled at build time.
-
-This is due to a known performance problem in the ANSI-C based 7z extraction
-code provided by the LZMA SDK that limits its usefulness for large files with
-solid compression (see https://github.com/zeniko/unarr/issues/4).
+7z support for large files with solid compression is currently limited by a
+known performance problem in the ANSI-C based LZMA SDK
+(see https://github.com/zeniko/unarr/issues/4).
 
 Fixing this problem will require modification or replacement of the LZMA SDK
 code used.
+
+### Rar support
+
+RAR5 is currently not supported. There are plans to add this in a future version,
+but as of now this is still work in progress.

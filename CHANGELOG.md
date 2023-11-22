@@ -1,17 +1,27 @@
 # (lib)unarr changelog
 
-## 1.1.0 (unreleased)
+## 1.1.1 (2023-10-23)
+
+### Fixed
+* Fix heap corruption in rar filters (reported by Radosław Madej from Check Point Research)
+
+### Other
+* Update Readme
+
+## 1.1.0 (2023-09-03)
 
 ### Added
 * libFuzzer target for coverage-guided fuzz testing (Wang Xin-yu (王昕宇))
 * Unit testing using CMocka
 * Integration tests
+* Update lzma SDK to v23.01
 
 ### Changed
 * Build 7z support by default
 
 ### Fixed
 * Fix pkg-config when using absolute paths
+* Fix bzip2 integration
 
 ## 1.1.0.beta1 - 2022-05-01
 
